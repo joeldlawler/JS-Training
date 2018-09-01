@@ -266,14 +266,57 @@ class App extends Component {
     //      this is always referencing the current object 
     //  this.handleIncrement = this.handleIncrement.bind(this); 
     // }
+    
+    // handleIncrement() {
+    //     console.log('Increment Clicked', this);
+    // }
 
     // Better Solution
     // Arrow functions don't rebind this key word
     // they inherit it
 
-
-    handleIncrement() {
+    handleIncrement = () => {
         console.log('Increment Clicked', this);
+    }
+
+    render() {
+      return (
+        <React.Fragment>
+          <span className={this.getBadgeClasses()}>{this.formatCount()}</span>
+          <button onClick={this.handleIncrement} className="btn btn-secondary btn-sm">Increment</button>
+        </React.Fragment>
+      );
+    }
+  
+    getBadgeClasses() {
+      let classes = "bade m-2 badge-";
+      classes += this.state.count === 0 ? "warning" : "primary";
+      return classes;
+    }
+  
+    formatCount() {
+      const { count } = this.state;
+      return count === 0 ? <h1>Zero</h1> : count;
+    }
+  }
+  export default App 
+
+
+// https://codewithmosh.com/courses/357787/lectures/5634608
+// Updating the state
+// react is not automatically aware of state changes
+// Angular is monkeypatched, react is not
+// we have to use one of the methods we inherit from the base component
+// we use setState() to figure out what part of the state has changed
+// and based on that will bring the dom insink with the virtual dom
+
+class App extends Component {
+    state = {
+      count: 0
+    };
+  
+    handleIncrement = () => {
+       this.setState({ count: this.state.count + 1 });
     }
 
     render() {
