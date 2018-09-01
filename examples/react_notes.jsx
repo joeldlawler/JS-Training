@@ -9,6 +9,7 @@ class App extends Component {
     );
   }
 }
+export default App 
 
 // this can also be done like this
 class App extends Component {
@@ -20,6 +21,7 @@ class App extends Component {
     );
   }
 }
+export default App 
 
 // Empedding an expression
 class App extends Component {
@@ -79,6 +81,7 @@ class App extends Component {
     return count === 0 ? <h1>Zero</h1> : count;
   }
 }
+export default App
 
 // https://codewithmosh.com/courses/357787/lectures/5634625
 // Rendering Classes Dynamically
@@ -108,6 +111,8 @@ class App extends Component {
     return count === 0 ? <h1>Zero</h1> : count;
   }
 }
+export default App 
+
 
 // https://codewithmosh.com/courses/357787/lectures/5634610
 // Rendering Lists
@@ -144,3 +149,51 @@ class App extends Component {
     return count === 0 ? <h1>Zero</h1> : count;
   }
 }
+export default App 
+
+// https://codewithmosh.com/courses/357787/lectures/5634620
+// Conditional Rendering
+
+// *** In javascript unlike other programming languages you can 
+// apply the logical and && between non bolean values 
+
+// true && true 
+// returns true
+
+// true && false
+// returns false
+
+// true &&  'Hi'
+// returns  "Hi"
+
+// JavaScript tries to convert 'Hi' to truthy or falsey 
+// An empty string is considered falsey
+// A string that has a least on character is considered truthy
+
+// true && 'Hi' && 1
+// retuns 1 
+// 1 is considered truthy.  0 would be falsey 
+
+
+
+class App extends Component {
+  state = {
+    count: 0,
+    tags: ["tag1", "tag2", "tag3"]
+  };
+
+  renderTags() {
+      if(this.state.tags.length ===0) return <p>There are no tags!</p>;
+      return <ul> {this.state.tags.map(tag => (<li kay={tag}>{tag}</li>))}</ul>;
+  }
+
+  render() {
+    return (
+      <React.Fragment>
+        {this.state.tags.length === 0 && "Please create a new tag!"} 
+        {this.renderTags()}
+      </React.Fragment>
+    );
+  }
+}
+export default App 
