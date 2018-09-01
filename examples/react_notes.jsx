@@ -151,6 +151,8 @@ class App extends Component {
 }
 export default App 
 
+
+
 // https://codewithmosh.com/courses/357787/lectures/5634620
 // Conditional Rendering
 
@@ -196,3 +198,97 @@ class App extends Component {
   }
 }
 export default App 
+
+
+// https://codewithmosh.com/courses/357787/lectures/5634622
+// Handling Events
+
+class App extends Component {
+    state = {
+      count: 0
+    };
+  
+    handleIncrement() {
+        console.log('Increment Clicked');
+    }
+
+    render() {
+      return (
+        <React.Fragment>
+          <span className={this.getBadgeClasses()}>{this.formatCount()}</span>
+          <button onClick={this.handleIncrement} className="btn btn-secondary btn-sm">Increment</button>
+        </React.Fragment>
+      );
+    }
+  
+    getBadgeClasses() {
+      let classes = "bade m-2 badge-";
+      classes += this.state.count === 0 ? "warning" : "primary";
+      return classes;
+    }
+  
+    formatCount() {
+      const { count } = this.state;
+      return count === 0 ? <h1>Zero</h1> : count;
+    }
+  }
+  export default App 
+
+
+// https://codewithmosh.com/courses/357787/lectures/5634615
+// Binding Event Handlers
+
+// this in JavaScript behaves differently than other languages
+// depending on how a function is called this can reference different objects
+// if a function is called as part of a reference
+// object.method();
+// this will always return a reference to that object
+// if that function is called as a stand alone fucntion w/o an object reference
+// function();
+// this by default returns a reference to the window object
+// if strict mode is enable this will return undefined
+// we use the bind method to solve this problem
+
+class App extends Component {
+    state = {
+      count: 0
+    };
+  
+    // a contstructor is called when the class is created
+    constructor(){
+    // we have to call the contructor of the parent class using the super key word
+    // this will not be undefined when super is called
+    super();
+
+    // functions in javascript are objects
+    // this returns a new instance of the handleIncrement function amd in that function
+    // this is always referencing the current object 
+    this.handleIncrement = this.handleIncrement.bind(this); 
+
+    }
+
+    handleIncrement() {
+        console.log('Increment Clicked', this);
+    }
+
+    render() {
+      return (
+        <React.Fragment>
+          <span className={this.getBadgeClasses()}>{this.formatCount()}</span>
+          <button onClick={this.handleIncrement} className="btn btn-secondary btn-sm">Increment</button>
+        </React.Fragment>
+      );
+    }
+  
+    getBadgeClasses() {
+      let classes = "bade m-2 badge-";
+      classes += this.state.count === 0 ? "warning" : "primary";
+      return classes;
+    }
+  
+    formatCount() {
+      const { count } = this.state;
+      return count === 0 ? <h1>Zero</h1> : count;
+    }
+  }
+  export default App 
