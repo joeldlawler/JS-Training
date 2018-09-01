@@ -254,18 +254,23 @@ class App extends Component {
       count: 0
     };
   
-    // a contstructor is called when the class is created
-    constructor(){
-    // we have to call the contructor of the parent class using the super key word
-    // this will not be undefined when super is called
-    super();
+    // Possible Solution to this issue
+    //      a contstructor is called when the class is created
+    //  constructor(){
+    //      we have to call the contructor of the parent class using the super key word
+    //      this will not be undefined when super is called
+    //  super();
 
-    // functions in javascript are objects
-    // this returns a new instance of the handleIncrement function amd in that function
-    // this is always referencing the current object 
-    this.handleIncrement = this.handleIncrement.bind(this); 
+    //      functions in javascript are objects
+    //      this returns a new instance of the handleIncrement function amd in that function
+    //      this is always referencing the current object 
+    //  this.handleIncrement = this.handleIncrement.bind(this); 
+    // }
 
-    }
+    // Better Solution
+    // Arrow functions don't rebind this key word
+    // they inherit it
+
 
     handleIncrement() {
         console.log('Increment Clicked', this);
