@@ -56,11 +56,19 @@ class App extends Component {
     imgeUrl: "https://picsum.photos/200"
   };
 
+  // Set the css
+  styles = {
+    fontSize: 10,
+    fontWeight: "bold"
+  };
+
   render() {
     return (
       <React.Fragment>
-        <img src={this.state.imgeUrl} alt="" />
-        <span className="bade badge-primary m-2">{this.formatCount()}</span>
+        <img style={{ height: 200 }} src={this.state.imgeUrl} alt="" />
+        <span style={this.styles} className="bade badge-primary m-2">
+          {this.formatCount()}
+        </span>
         <button className="btn btn-secondary btn-sm">Inncrement</button>
       </React.Fragment>
     );
