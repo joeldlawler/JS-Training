@@ -396,7 +396,7 @@ class App extends Component {
   // Components
   // Working Bootrap Table Example
 
-  import React, { Component } from "react";
+import React, { Component } from "react";
 import { getMovies } from "../services/fakeMovieService";
 
 class Movies extends Component {
