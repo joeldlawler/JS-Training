@@ -453,3 +453,40 @@ class Movies extends Component {
   }
 }
 export default Movies;
+
+
+// Passing Data to Components
+// https://codewithmosh.com/courses/357787/lectures/5634713
+// Every react component has property called props
+// props is a plain javascript object that contains all the attributes that are set in the parent
+
+//Parent
+state = {
+    counters: [
+      { id: 1, value: 0 },
+      { id: 2, value: 0 },
+      { id: 3, value: 0 },
+      { id: 4, value: 0 }
+    ]
+  };
+
+// Child
+state = {
+    count: this.props.value
+  };
+
+
+
+// Passing Children
+// https://codewithmosh.com/courses/357787/lectures/5634710
+
+//Parent 
+<div>
+{this.state.counters.map(counter => (
+  <Counter key={counter.id} value={counter.value}>
+    <h4>Counter #{counter.id}</h4>
+  </Counter>
+))}
+</div>
+// Child
+{this.props.children}
