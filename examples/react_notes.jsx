@@ -490,3 +490,27 @@ state = {
 </div>
 // Child
 {this.props.children}
+
+
+
+// Props vs State
+// https://codewithmosh.com/courses/357787/lectures/5634715
+
+
+// Props includes data that we give to a component
+// Props is read only and cannot be changed
+
+// State includes data that is local or private to that component 
+// State is internal cannot be accessed outside of the component
+class Counter extends Component {
+    state = {
+      count: this.props.value
+}
+}
+
+
+// Raising and Handling Events
+// https://codewithmosh.com/courses/357787/lectures/5634711
+
+
+
