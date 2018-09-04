@@ -511,6 +511,35 @@ class Counter extends Component {
 
 // Raising and Handling Events
 // https://codewithmosh.com/courses/357787/lectures/5634711
+// The component that owns a piece of the state, should be the one
+// modifying it.
 
+// Parent
+handleDelete = () => {
+    console.log("Event Handler Called");
+  };
 
+  render() {
+    return (
+      <div>
+        {this.state.counters.map(counter => (
+          <Counter
+            key={counter.id}
+            onDelete={this.handleDelete}
+            value={counter.value}
+          />
+        ))}
+      </div>
+    );
+  }
 
+// Child
+render() {
+    return (
+      <div>
+        <button onClick={this.props.onDelete} className="btn btn-danger btn-sm m-2" >Delete </button>
+      </div>
+    );
+  }
+
+//
