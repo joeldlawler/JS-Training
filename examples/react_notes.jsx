@@ -542,4 +542,23 @@ render() {
     );
   }
 
-//
+
+
+// Updating the State
+// https://codewithmosh.com/courses/357787/lectures/5634718
+
+// The whole point of using objects is to encapsolate related values
+// Passing the entire object will allow for future changes to be passed
+// as props without having to update code such as this:
+
+<div>
+{this.state.counters.map(counter => (
+  <Counter
+    key={counter.id}
+    onDelete={this.handleDelete}
+    counter={counter}
+  />
+))}
+</div>
+
+
