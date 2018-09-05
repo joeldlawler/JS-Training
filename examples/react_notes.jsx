@@ -562,3 +562,35 @@ render() {
 </div>
 
 
+// Single Source of Truth
+// https://codewithmosh.com/courses/357787/lectures/5634714
+
+// Removing the Local State
+// https://codewithmosh.com/courses/357787/lectures/5634721
+// A controlled component does not have a local state.
+// It recieves all of it's data via props
+// It raises events when data needs to be changed
+// The the controlled component is entirely controlled by it's parent
+
+
+// Stateless Functional Component
+// https://codewithmosh.com/courses/357787/lectures/5634720
+// sfc + tab
+// This is a component that is a function rather than a classs
+
+import React, { Component } from "react";
+
+const NavBar = props => {
+  return (
+    <nav className="navbar navbar-light bg-light">
+      <a className="navbar-brand" href="#">
+        Navbar{" "}
+        <span className="badge badge-pill badge-secondary">
+          {props.totalCounters}
+        </span>
+      </a>
+    </nav>
+  );
+};
+
+export default NavBar;
