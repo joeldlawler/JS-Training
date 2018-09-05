@@ -576,7 +576,8 @@ render() {
 // Stateless Functional Component
 // https://codewithmosh.com/courses/357787/lectures/5634720
 // sfc + tab
-// This is a component that is a function rather than a classs
+// This is a component that is a function rather than a class
+// There are no LIfecycle Hoots in a Stateless Functional Component
 
 import React, { Component } from "react";
 
@@ -642,3 +643,50 @@ class Counters extends Component {
 }
 
 export default Counters;
+
+// Lifecycle Hooks
+// https://codewithmosh.com/courses/357787/lectures/5634717
+
+// Mount
+// ^ Mount happens when an instance of a component is created
+//   and inserted into the DOM   
+// 3 Lifecycle Hooks
+// * constructor
+//      - constructor is only called once when an instance of a class is created
+//      - this is the place to initialize properties or props in this instance
+//      - a common use is to set the state based on the props recieved
+
+        //  * in order to have access to props it must be passed to the construcor
+        //  and to the base class
+        // constructor(props) {
+        //     super(props);
+        //     this.state = this.product.something;
+        // }
+
+// * render
+//     - when a component is rendered, all of it's children are rendered 
+//     recursively
+//
+// * componentDidMount
+//     - componentDidMount is a good place to get data
+
+// Update
+// ^ Update happens when the state or props of a component get changed
+// 2 Lifecycle Hooks
+// * render
+// * componentDidUpdate
+//      - componentDidUpdate can be used to compare the old state and new state
+//      and/or old props and new props
+
+        // componentDidUpdate(prevProps, prevState) {
+        //     console.log("prevProps", prevProps);
+        //     console.log("prevState", prevState);
+        //     if (prevProps.counter.value !== this.props.counter.value) {
+        //     // Ajax call and get new data from the server
+        //     }
+        // }
+
+// Unmount
+// ^ Unmount happens when component is removed from the DOM
+// 1 Lifecycle Hook
+// * componentWillUnmount
