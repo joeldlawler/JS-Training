@@ -690,3 +690,24 @@ export default Counters;
 // ^ Unmount happens when component is removed from the DOM
 // 1 Lifecycle Hook
 // * componentWillUnmount
+
+
+// Great Example of a toggle
+handleLike = movie => {
+  const movies = [...this.state.movies];
+  const index = movies.indexOf(movie);
+  movies[index] = { ...movies[index] };
+  movies[index].liked = !movies[index].liked;
+  this.setState({ movies });
+};
+
+// JS Paginator Function
+import _ from "lodash";
+
+export function paginate(items, pageNumber, pageSize) {
+  const starIndex = (pageNumber - 1) * pageSize;
+  return _(items)
+    .slice(starIndex)
+    .take(pageSize)
+    .value();
+}
