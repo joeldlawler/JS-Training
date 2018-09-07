@@ -711,3 +711,56 @@ export function paginate(items, pageNumber, pageSize) {
     .take(pageSize)
     .value();
 }
+
+// Type checking with Proptypes
+// https://reactjs.org/docs/typechecking-with-proptypes.html#proptypes
+
+import PropTypes from "prop-types";
+
+Paginator.propTypes = {
+  itemsCount: PropTypes.number.isRequired,
+  pageSize: PropTypes.number.isRequired,
+  currentPage: PropTypes.number.isRequired,
+  onPageChange: PropTypes.func.isRequired
+};
+
+// Component Flexibility
+// Rather than use the actual values from the data
+// setting these as properties allows the component
+// to take other values so it is not hardwired to take
+// for example model._id and model.name
+
+<ListGroup
+  items={this.state.genres}
+  textProperty = "name"
+  valueProperty= "_id"
+  onItemSelected={this.handleGenreSelect}
+/>
+
+
+// Default Props
+// https://codewithmosh.com/courses/357787/lectures/5706715
+// Default Props simplify the interface of a component
+
+import React from "react";
+
+const ListGroup = props => {
+  const { items, textProperty, valueProperty } = props;
+
+  return (
+    <ul className="list-group">
+      {items.map(item => (
+        <li key={item[valueProperty]} className="list-group-item">
+           {item[textProperty]}
+        </li>
+      ))}
+    </ul>
+  );
+};
+
+ListGroup.defaultProps = {
+  textProperty: "name",
+  valueProperty: "_id"
+};
+
+export default ListGroup;
