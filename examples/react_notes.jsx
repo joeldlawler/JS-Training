@@ -741,6 +741,8 @@ Paginator.propTypes = {
 // Default Props
 // https://codewithmosh.com/courses/357787/lectures/5706715
 // Default Props simplify the interface of a component
+// The fewer props needed to be passed to our component
+// the easier it is to use
 
 import React from "react";
 
@@ -764,3 +766,27 @@ ListGroup.defaultProps = {
 };
 
 export default ListGroup;
+
+// Filtering
+// https://codewithmosh.com/courses/357787/lectures/5706699
+// If selected genre is truthy 
+// return all movies with selected genre
+// otherwise return allMovies
+
+  const filtered = selectedGenre
+  ? allMovies.filter(m => m.genre._id === selectedGenre._id)
+  : allMovies;
+
+  // filtered gets passed to the paginate 
+  const movies = paginate(filtered, currentPage, pageSize);
+
+  // set the itemsCount to the filtered list
+  <Paginator
+  itemsCount={filtered.length}
+  pageSize={pageSize}
+  currentPage={currentPage}
+  onPageChange={this.handlePageChange}
+  />
+
+  // Update the list to show filtered count        
+  // <p>Showing {filtered.length} movies.</p>
