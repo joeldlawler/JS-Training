@@ -790,3 +790,48 @@ export default ListGroup;
 
   // Update the list to show filtered count        
   // <p>Showing {filtered.length} movies.</p>
+
+  // Spreading and adding a value
+  // https://codewithmosh.com/courses/357787/lectures/5706696
+  const genres = [{name: 'All Genres' },...getGenres()]; 
+
+
+  // Sorting
+  // https://codewithmosh.com/courses/357787/lectures/5706693
+
+    // Step 1 Apply Filter (if exists)
+    const filtered =
+    selectedGenre && selectedGenre._id
+      ? allMovies.filter(m => m.genre._id === selectedGenre._id)
+      : allMovies;
+
+    // Step 2 Apply Sort
+    const sorted = _.orderBy(filtered, [sortColumn.path], [sortColumn.order]);
+
+    // Step 3 Paginate
+    const movies = paginate(sorted, currentPage, pageSize);
+
+    // Routing
+    // https://codewithmosh.com/courses/357787/lectures/5706936
+    // Routing is not by default part of React
+    // react-router-dom will need to be installed
+
+    import { Route, Switch } from "react-router-dom";
+
+    class App extends Component {
+      render() {
+        return (
+          <div>
+            <NavBar />
+            <div className="content">
+              <Switch>
+                <Route path="/products" component={Products} />
+                <Route path="/posts" component={Posts} />
+                <Route path="/admin" component={Dashboard} />
+                <Route path="/" component={Home} />
+              </Switch>
+            </div>
+          </div>
+        );
+      }
+    }
