@@ -897,7 +897,7 @@ export default ListGroup;
     // that means that expression is optional
 
 
-    
+
     // Query String Parameters
     // require install such as 
     // npm i query-string@6.1.0
@@ -914,3 +914,20 @@ export default ListGroup;
 
     // Values are always strings so types like boolean or numbers 
     // must be parsed accordingly 
+
+    // Programmatic Navigation
+    // 
+
+    handleSave = () => {
+      // Navigate to /products with the ability after save to use the Back Button
+      this.props.history.push("/products");
+    };
+
+    handleLogin = () => {
+      // Navigate to home w/o the ability to use the Back Button to return to Login
+      this.props.history.replace("/home");
+    };
+  
+
+    // Forms
+    // https://codewithmosh.com/courses/357787/lectures/5707058
