@@ -835,3 +835,82 @@ export default ListGroup;
         );
       }
     }
+
+    // Nav bar using Link for spa
+    import { Link } from "react-router-dom";
+
+    const NavBar = () => {
+      return (
+        <ul>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/products">Products</Link>
+          </li>
+          <li>
+            <Link to="/posts/2018/06">Posts</Link>
+          </li>
+          <li>
+            <Link to="/admin">Admin</Link>
+          </li>
+        </ul>
+      );
+    };
+
+    export default NavBar;
+
+    // Route Props
+    // https://codewithmosh.com/courses/357787/lectures/5706949
+    // Reference https://reacttraining.com/react-router/core/api/Router 
+    // The <Rount/> is a wrapper Component
+    // It has three built in Props
+    // Props
+      // history: {...}
+      // location: {...}
+      // match:: {...}  
+
+    <Route path="/products" component={Products} />
+
+    // Passing Props in route
+    // This will pass our custom prop sortBy="newest" 
+    // and the built in props history, location and mactch 
+    // via the spread opporator {...props} 
+
+    // <Route 
+    //  path="/products" 
+    //  render={props => <Products sortBy="newest" {...props} />}
+    // />
+
+    // Passing Parmeters
+    // <Route path="/posts/:year/:month" component={Posts} />
+    // or
+    // <Link to={`/products/${product.id}`}>{product.name}</Link>
+
+    // Reading Parameters        
+    // <h1>Product Details - {this.props.match.params.id} </h1>
+
+    // Optional Paramters
+    // <Route path="/posts/:year?/:month?" component={Posts} />
+    // The ? is part of regular experessions in JavaScript
+    // In regular espressions when you append and expression with a ?
+    // that means that expression is optional
+
+
+    
+    // Query String Parameters
+    // require install such as 
+    // npm i query-string@6.1.0
+
+    // import queryString from "query-string";
+
+    // const Posts = ({ match, location }) => {
+    //   const result = queryString.parse(location.search);
+    //   console.log(result);
+
+    // http://localhost:3000/posts/2018/06?sortBy=newest
+
+    // {sortBy:"newest"}
+
+    // Values are always strings so types like boolean or numbers 
+    // must be parsed accordingly 
