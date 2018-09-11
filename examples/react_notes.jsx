@@ -931,3 +931,26 @@ export default ListGroup;
 
     // Forms
     // https://codewithmosh.com/courses/357787/lectures/5707058
+    // In react applications you should never work with the document object
+    // such as:   document.getElementById('somevalue').value;
+    // The whole point of react is to put abstraction over
+    // the document object model or dom so we don't work with the
+    // dom directly so it is easier to maintain and unit test.
+    // Use controled form elements to create a single line of truth
+
+    state = {
+      account: { username: "", password: "" }
+    };
+
+    handleChange = e => {
+      // clone state acccount
+      const account = { ...this.state.account };
+      // update the cloned user name value
+      account.username = e.currentTarget.value;
+      // react updates the state
+      this.setState({ account });
+    };
+
+    <input value={this.state.account.username} onChange={this.handleChange} id="username" type="text" className="form-control"/>
+ 
+
