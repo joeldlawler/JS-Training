@@ -937,6 +937,7 @@ export default ListGroup;
     // the document object model or dom so we don't work with the
     // dom directly so it is easier to maintain and unit test.
     // Use controled form elements to create a single line of truth
+    // Null and undefined elements cannot be used
 
     state = {
       account: { username: "", password: "" }
@@ -946,11 +947,63 @@ export default ListGroup;
       // clone state acccount
       const account = { ...this.state.account };
       // update the cloned user name value
-      account.username = e.currentTarget.value;
+      // -- this only useful for single imput account.username = e.currentTarget.value;
+      // Whenever working with the properties of an object dynamically
+      // use [] notation
+      account[e.currentTarget.name] = e.currentTarget.value;
       // react updates the state
       this.setState({ account });
     };
 
-    <input value={this.state.account.username} onChange={this.handleChange} id="username" type="text" className="form-control"/>
+    <input value={this.state.account.username} onChange={this.handleChange} name="username" id="username" type="text" className="form-control"/>
  
 
+// Validation
+// Joi
+// https://codewithmosh.com/courses/357787/lectures/5707068
+// https://www.npmjs.com/package/joi
+
+// computed properties
+const obj = { [name]: value };
+
+// Rest Operator
+// since both the name and value are the same
+// this
+// onChange={onChange} name={name} id={name} type={type}
+// can be
+// ...rest
+
+// Before
+const Input = ({ type, name, label, value, error, onChange }) => {
+  return (
+    <div className="form-group">
+      <label htmlFor={name}>{label}</label>
+      <input
+        value={value}
+        onChange={onChange}
+        name={name}
+        id={name}
+        type={type}
+        className="form-control"
+      />
+      {error && <div className="alert alert-danger">{error}</div>}
+    </div>
+  );
+};
+
+// After
+
+const Input = ({ name, label, error, ...rest}) => {
+  return (
+    <div className="form-group">
+      <label htmlFor={name}>{label}</label>
+      <input
+        {...rest}
+        name={name}
+        id={name}
+        className="form-control"
+      />
+      {error && <div className="alert alert-danger">{error}</div>}
+    </div>
+  );
+};
