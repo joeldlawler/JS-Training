@@ -2,31 +2,38 @@
 
 // Inheritance is a mechanism that allows you
 // to eliminate redundant code.
+// JavaScript does not have classes
+// JaveScript only has objects
 
-const Animal = function(sound) {
-  this.sound = sound;
-};
+// JaveScipt has Prototypical Inheritance
+// Prototype ("Parent")
 
-Animal.prototype.makeSound = function() {
-  console.log(this.sound);
-};
+// A prototype is just a regular object.
+// There is nothing special about it.
 
-const Dog = function(name, breed) {
-  this.name = name;
-  this.breed = breed;
-};
+// Every object has a prorotype except
+// the root object.
 
-Dog.prototype = new Animal("woof");
+// Example Multilevel Inheritance
+//
+//  objectBase
+//    ^^^ arrayBase
+//          ^^^ myArray
+//
+// Objects created by a given contstructor
+// will have the same prototype.
+//
+//
+//
+// Property Descriptors
+let person = { name: "Fred" };
 
-const Cat = function(name, breed) {
-  this.name = name;
-  this.breed = breed;
-};
-
-Cat.prototype = new Animal("meow");
-
-const dog = new Dog("Fido", "Collie");
-const cat = new Cat("Oliver", "Siamese");
-
-dog.makeSound();
-cat.makeSound();
+Object.defineProperty(person, "name", {
+  // Can property be changed?
+  writable: false,
+  // Can property by seen?
+  // Enumerable properties show up in for...in loops
+  enumerable: false,
+  // Can property by deleted?
+  configurable: false
+});
