@@ -37,3 +37,10 @@ Object.defineProperty(person, "name", {
   // Can property by deleted?
   configurable: false
 });
+
+// Avoid creating inheritance hierarchies
+// because they are very fragile
+
+// Keep inheritance to one level
+
+// Favor composition over inheritance
